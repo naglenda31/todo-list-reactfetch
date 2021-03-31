@@ -3,6 +3,10 @@ import React, { useState } from "react";
 export function TodoList() {
 	const [list, setList] = useState([]);
 	const [inputValue, setInputValue] = useState("");
+	function handleTaskDelete(label) {
+		const newList = list.filter(listItem => listItem.label !== label);
+		setList(newList);
+	}
 	const handleKeyPress = e => {
 		if (e.key === "Enter" && inputValue !== "") {
 			setList(
@@ -30,8 +34,15 @@ export function TodoList() {
 						/>
 					</li>
 					{list.map((listItem, index) => (
-						<li className="pl-4" key={index}>
+						<li className="px-4 d-flex" key={index}>
 							{listItem.label}
+							<div
+								className="ml-auto"
+								onClick={() =>
+									handleTaskDelete(listItem.label)
+								}>
+								<i className="far fa-trash-alt"></i>
+							</div>
 						</li>
 					))}
 
