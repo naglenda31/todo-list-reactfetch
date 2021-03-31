@@ -4,6 +4,7 @@ body{
     height: 100vh;
     font-family: 'Indie Flower', cursive;
     font-size: 2rem;
+    background-image: url("https://images.unsplash.com/photo-1559311648-addd6af95dd4?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80");
 }
 
 h1{
@@ -23,7 +24,6 @@ h1{
         0 20px 0 -10px #f5deb3, /* The third layer */
         0 20px 1px -9px rgba(0,0,0,0.15); /* The third layer shadow */
 }
-
 
 input{
     border: none;
@@ -48,6 +48,19 @@ input{
     border-bottom: 1px solid rgb(114, 30, 30);
     padding: 5px;
     color: black;
+}
+
+.delete-icon{
+    display: none;
+}
+
+.list-item:hover{
+    color: rgb(238, 234, 234);
+    transition: background 1s;
+    background: rgba(224, 20, 20, 0.5);
+    .delete-icon{
+        display: block;
+    }
 }
 
 .total-items{

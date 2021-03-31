@@ -4,7 +4,7 @@ export function TodoList() {
 	const [list, setList] = useState([]);
 	const [inputValue, setInputValue] = useState("");
 	function handleTaskDelete(label) {
-		const newList = list.filter(listItem => listItem.label !== label);
+		let newList = list.filter(listItem => listItem.label !== label);
 		setList(newList);
 	}
 	const handleKeyPress = e => {
@@ -34,10 +34,10 @@ export function TodoList() {
 						/>
 					</li>
 					{list.map((listItem, index) => (
-						<li className="px-4 d-flex" key={index}>
+						<li className="px-4 d-flex list-item" key={index}>
 							{listItem.label}
 							<div
-								className="ml-auto"
+								className="delete-icon ml-auto"
 								onClick={() =>
 									handleTaskDelete(listItem.label)
 								}>
