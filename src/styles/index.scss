@@ -2,23 +2,54 @@
 
 body{
     height: 100vh;
+    font-family: 'Indie Flower', cursive;
+    font-size: 2rem;
 }
 
-.container{
-    border: 1px solid lightgray;
-    max-width: 600px;
+h1{
+     font-family: 'Kiwi Maru', serif;
+     font-size: 4.5rem;
+     color: rgba(224, 20, 20, 0.5);
 }
+
+.list-container{
+    background: #f5deb3;
+    min-width: 600px;
+    min-height: 500px;
+    box-shadow:
+        0 1px 1px rgba(0,0,0,0.15), /* The top layer shadow */
+        0 10px 0 -5px #f5deb3, /* The second layer */
+        0 10px 1px -4px rgba(0,0,0,0.15), /* The second layer shadow */
+        0 20px 0 -10px #f5deb3, /* The third layer */
+        0 20px 1px -9px rgba(0,0,0,0.15); /* The third layer shadow */
+}
+
 
 input{
     border: none;
     width: 100%;
+    background: transparent;
+}
+
+:-ms-input-placeholder{
+    color: rgba(224, 20, 20, 0.5);
+}
+
+::-ms-input-placeholder{
+    color: rgba(224, 20, 20, 0.5);
+}
+
+::placeholder{
+    color: rgba(224, 20, 20, 0.5);
+    opacity: 1;
 }
 
 .list-container li{
-    border-bottom: 1px solid lightgray;
+    border-bottom: 1px solid rgb(114, 30, 30);
     padding: 5px;
+    color: black;
 }
 
 .total-items{
-    color: rgba(211, 211, 211, 0.7);
+    color: rgba(224, 20, 20, 0.5)
 }

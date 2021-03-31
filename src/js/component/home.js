@@ -16,8 +16,8 @@ export function TodoList() {
 	};
 	return (
 		<div className="">
-			<h1 className="text-center my-3 display-3">ToDos</h1>
-			<div className="container d-flex flex-column p-0">
+			<h1 className="text-center my-4">Today I Will...</h1>
+			<div className="container d-flex flex-column align-items-center p-0">
 				<ul className="list-container list-unstyled">
 					<li>
 						<input
@@ -30,18 +30,21 @@ export function TodoList() {
 						/>
 					</li>
 					{list.map((listItem, index) => (
-						<li key={index}>{listItem.label}</li>
+						<li className="pl-4" key={index}>
+							{listItem.label}
+						</li>
 					))}
+
+					<div className="total-items pl-2 ml-2 mt-2">
+						{list.length === 0
+							? "You're done!!"
+							: list.length === 1
+							? list.length + " task to complete"
+							: list.length > 1
+							? list.length + " tasks to complete"
+							: list.length + " tasks to complete"}
+					</div>
 				</ul>
-				<div className="total-items pl-2 ml-2">
-					{list.length === 0
-						? "You're done!!"
-						: list.length === 1
-						? list.length + " task to complete"
-						: list.length > 1
-						? list.length + " tasks to complete"
-						: list.length + " tasks to complete"}
-				</div>
 			</div>
 		</div>
 	);
