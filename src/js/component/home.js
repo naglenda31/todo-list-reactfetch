@@ -21,7 +21,7 @@ export function TodoList() {
 	return (
 		<div className="">
 			<h1 className="text-center my-4">Today I Will...</h1>
-			<div className="container d-flex flex-column align-items-center p-0">
+			<div className="d-flex flex-column align-items-center p-0">
 				<ul className="list-container list-unstyled">
 					<li>
 						<input
