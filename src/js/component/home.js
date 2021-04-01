@@ -34,6 +34,7 @@ export function TodoList() {
 				</li>
 				{list.map((listItem, index) => (
 					<li className="px-4 d-flex list-item" key={index}>
+						<input className="checkbox" type="checkbox" />
 						{listItem.label}
 						<div
 							className="delete-icon ml-auto"
