@@ -1,15 +1,59 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
+const baseUrl = "https://assets.breatheco.de/apis/fake/todos/user/naglenda31";
 export function TodoList() {
 	const [list, setList] = useState([]);
 	const [inputValue, setInputValue] = useState("");
+	useEffect(() => {
+		syncData();
+	}, []);
+	const syncData = () => {
+		fetch(baseUrl)
+			.then(response => {
+				if (!response.ok) throw new Error(response.statusText);
+
+				return response.json();
+			})
+			.then(data => {
+				setList(data);
+			})
+			.catch(error => console.log(error));
+	};
+	const updateData = data => {
+		console.log(data);
+		fetch(baseUrl, {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(data)
+		})
+			.then(response => {
+				if (!response.ok) throw new Error(response.statusText);
+
+				return response.json();
+			})
+			.then(data => {
+				syncData();
+			})
+			.catch(error => console.log(error));
+	};
 	function handleTaskDelete(label) {
 		let newList = list.filter(listItem => listItem.label != label);
-		setList(newList);
+		if (newList.length !== 0) {
+			updateData(newList);
+		} else {
+			updateData([
+				{
+					label: "sample todo",
+					done: false
+				}
+			]);
+		}
 	}
 	const handleKeyPress = e => {
 		if (e.key === "Enter" && inputValue !== "") {
-			setList(
+			updateData(
 				list.concat({
 					label: inputValue,
 					done: false
