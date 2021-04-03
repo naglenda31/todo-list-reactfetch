@@ -36,6 +36,58 @@ input[type="text"]{
     background: transparent;
 }
 
+.checkbox{
+    opacity: 0;
+    position: absolute;
+}
+
+.custom-checkbox{
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+    margin-right: 15px;
+    width: 30px;
+    height: 30px;
+    border: 2px solid currentColor;
+    border-radius: 50%;
+}
+
+.list-item:hover{
+    .checked::after{
+        display: block;
+    }
+}
+
+.list-item:hover{
+    .checked::before{
+        display: none;
+    }
+}
+
+.checked::before, .checked::after{
+    content: "\2713";
+    font-size: 40px;
+    position: relative;
+    left: 3px;
+}
+
+.checked::after{
+    color: rgb(238, 234, 234);
+    display: none;
+}
+
+.checked::before{
+    color: rgba(224, 20, 20, 0.5);
+    display: block;
+}
+
+.custom-checkbox,
+.checked::before,
+.checked::after,
+.delete-icon{
+    align-self: center;
+}
+
 :-ms-input-placeholder{
     color: rgba(224, 20, 20, 0.5);
 }
@@ -57,6 +109,7 @@ input[type="text"]{
 
 .delete-icon{
     display: none;
+    font-size: smaller;
 }
 
 .list-item:hover{
@@ -65,9 +118,18 @@ input[type="text"]{
     background: rgba(224, 20, 20, 0.5);
     .delete-icon{
         display: block;
+        cursor: pointer;
     }
 }
 
 .total-items{
-    color: rgba(224, 20, 20, 0.5)
+    color: rgba(224, 20, 20, 0.5);
+    .delete-list:hover{
+        border: 1px solid rgb(114, 30, 30);
+        background: rgba(224, 20, 20, 0.5);
+        color: rgb(238, 234, 234);
+        border-radius: 5%;
+        padding: 1px;
 }
+}
+

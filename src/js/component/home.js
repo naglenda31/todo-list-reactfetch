@@ -4,6 +4,7 @@ const baseUrl = "https://assets.breatheco.de/apis/fake/todos/user/naglenda31";
 export function TodoList() {
 	const [list, setList] = useState([]);
 	const [inputValue, setInputValue] = useState("");
+	const [checked, setCheckedTodo] = useState("");
 	useEffect(() => {
 		syncData();
 	}, []);
@@ -19,6 +20,7 @@ export function TodoList() {
 			})
 			.catch(error => console.log(error));
 	};
+
 	const updateData = data => {
 		console.log(data);
 		fetch(baseUrl, {
@@ -38,6 +40,7 @@ export function TodoList() {
 			})
 			.catch(error => console.log(error));
 	};
+
 	function handleTaskDelete(label) {
 		let newList = list.filter(listItem => listItem.label != label);
 		if (newList.length !== 0) {
@@ -51,6 +54,22 @@ export function TodoList() {
 			]);
 		}
 	}
+
+	const handleCheckedTodo = index => {
+		let updatedList = [].concat(list);
+		updatedList[index].checked = !updatedList[index].checked;
+		let count = 0;
+		for (let i = 0; i < updatedList.length; i++) {
+			updatedList[i].checked && count++;
+		}
+		setCheckedTodo(count);
+		updateData(updatedList);
+	};
+
+	const clearList = () => {
+		updateData([{ label: "sample todo", done: false }]);
+	};
+
 	const handleKeyPress = e => {
 		if (e.key === "Enter" && inputValue !== "") {
 			updateData(
@@ -78,7 +97,16 @@ export function TodoList() {
 				</li>
 				{list.map((listItem, index) => (
 					<li className="px-4 d-flex list-item" key={index}>
-						{/* <input className="checkbox" type="checkbox" /> */}
+						<input className="checkbox" type="checkbox" />
+						<label htmlFor="my-checkbox"></label>
+						<span
+							className={
+								listItem.checked
+									? "custom-checkbox checked"
+									: "custom-checkbox"
+							}
+							onClick={() => handleCheckedTodo(index)}
+							id="my-checkbox"></span>
 						{listItem.label}
 						<div
 							className="delete-icon ml-auto"
@@ -88,7 +116,7 @@ export function TodoList() {
 					</li>
 				))}
 
-				<div className="total-items pl-2 ml-2 mt-2">
+				<div className="d-flex total-items pl-2 ml-2 mt-2">
 					{list.length === 0
 						? "You're done!!"
 						: list.length === 1
@@ -96,6 +124,13 @@ export function TodoList() {
 						: list.length > 1
 						? list.length + " tasks to complete"
 						: list.length + " tasks to complete"}
+
+					<span
+						className="delete-list ml-auto mr-2 pr-2"
+						role="button"
+						onClick={clearList}>
+						Delete All
+					</span>
 				</div>
 			</ul>
 		</div>
