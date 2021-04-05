@@ -126,7 +126,7 @@ export function TodoList() {
 						: list.length + " tasks to complete"}
 
 					<span
-						className="delete-list ml-auto mr-2 pr-2"
+						className="delete-list ml-auto mr-2 px-2"
 						role="button"
 						onClick={clearList}>
 						Delete All
